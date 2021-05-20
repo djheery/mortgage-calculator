@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="Chrome">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>   
+  <div class="container">
+    <div id="mortgage-calculator">
+      <form id="mortgage-calculator__form">
+        <div class="mc-heading">
+          <h2 class="mc-title"> Mortgage Calculator</h2>
+          <p class="mc-title__sub-title">Calculate the estimate repayments you will make on your mortgage.</p>
+        </div>
+        <div class="form-group">
+          <label for="pp">Property price</label>
+          <div class="input__container">
+            <div class="currency-box" role="button">
+              <span class="currency-box__content">£</span>
+            </div>
+            <input type="number" value='150000' id="pp" class="input pp">
+          </div>
+        </div>  
+        <div class="two-input-row">
+          <div class="form-group">
+            <label for="dp">Deposit</label>
+            <div class="input__container">
+              <div class="currency-box" role="button">
+                <span class="currency-box__content">£</span>
+              </div>
+              <input type="number" value='30000' id="dp" class="input dp">
+            </div>
+          </div>   
+          <div class="form-group mrp-result">
+            <div id="circle__container">  
+              <div id="circle-percentage"></div>
+            <svg id="circle">
+              <circle r="25" cx="50%" cy="50%" stroke="#ddd" fill="none" stroke-width="5" stroke-linecap="round" stroke-dasharray="155, 155">
+              </circle>
+              <circle id="success-value" r="25" cx="50%" cy="50%" stroke="#BA992F" fill="none" stroke-width="6.5" stroke-linecap="round" stroke-dasharray="0 155">
+              </circle>
+            </svg>
+            </div>
+            <p class="deposit-percentage-text">Lenders may expect more than a 5% deposit at this time. It is worth consulting the lender about your financial situation</p>
+          </div>
+        </div>
+        <div class="two-input-row">
+          <div class="form-group">
+            <label for="ai">Annual interest</label>
+            <div class="input__container">
+              <div class="currency-box" role="button">
+                <span class="currency-box__content">%</span>
+              </div>
+              <input type="number" value='2.4' id="ai" class="input ai">
+            </div>
+          </div>   
+          <div class="form-group">
+            <label for="rp" class="rp1">Repayment period</label>
+            <div class="input__container">
+              <div class="currency-box" role="button">
+                <span class="currency-box__content years-box">YR</span>
+              </div>
+              <input type="number" value='25' id="rp" class="input rp">
+            </div>
+          </div>  
+        </div>
+      </form>
+      <div id="results-container">
+        <div id="results-container__summary">
+          <p>Your estimated monthly repayments are <span class="gold result" id="result"></span> with a total of <span class="gold total-interest-payable" id="total-interest-payable"></span> due over the course of your mortgage repayments.</p>
+        </div>
+        <div class="chart-container">
+          <canvas id="myChart" width="500px" height="200px"></canvas>
+        </div>
+        <br><br>
+        <div class="yearly-breakdown__btn">
+          <button class="show-breakdown" type="submit">Show Yearly Breakdown</button>
+        </div>
+        <div class="yearly-breakdown-table hidden">
+          <div class="yearly-breakdown">
+            <h3 class="text-upper mgb-20">Yearly Breakdown</h3>
+            <p>This is an example of how your repayments would look over the course of your loan if the interest rate were to stay the same.</p>
+          </div>
+          <div class="mortgage-table">
+            <table class="mortgage-repayment-table">
+              <tr>
+                <th>Date</th>
+                <th>Loan Payment</th>
+                <th>Total Interest Paid</th>
+                <th>Interest This Month</th>
+                <th>Loan Remaining</th>
+              </tr>
+              <tbody class='repayment-results'></tbody>
+            </table>  
+            <br>
+          </div>
+          <div class="table-buttons"></div>
+        </div>
+      </div> 
+      <div class="tcalc-warning">
+        <p class="warning-content"><span class="text-bold">Important!</span> This is only a reference point. Your interest rates are variable, we assume you have a fixed rate mortgage and apply this fixed rate across the course of your entire loan. In reality would vary depending on the interest rate of your mortgage at different times during its repayment period.</p>
+      </div>
+    </div>
+  </div>
+  <script src="/js/chart.js"></script>
+  <script src="/js/mortgage-ui.js"></script>
+  <script src="/js/mortgage-calculations.js"></script>     
+  <script src="/js/mortgage-app.js" charset="UTF-8"> </script>
+</body>
+</html>
