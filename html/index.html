@@ -29,11 +29,11 @@
         <div class="two-input-row">
           <div class="form-group">
             <label for="dp">Deposit</label>
-            <div class="input__container">
+            <div class="input__container" data-error="Your deposit amount must be less than the stated property price">
               <div class="currency-box" role="button">
                 <span class="currency-box__content">£</span>
               </div>
-              <input type="number" value='30000' id="dp" class="input dp" data-error="Your deposit amount must be less than the stated property price">
+              <input type="number" value='30000' id="dp" class="input dp" >
             </div>
           </div>   
           <div class="form-group mrp-result">
@@ -52,20 +52,20 @@
         <div class="two-input-row">
           <div class="form-group">
             <label for="ai">Annual interest</label>
-            <div class="input__container">
+            <div class="input__container" data-error="This is beyond a normal rate of interest">
               <div class="currency-box" role="button">
                 <span class="currency-box__content">%</span>
               </div>
-              <input type="number" value='2.4' id="ai" class="input ai" data-error="This is beyond a normal rate of interest">
+              <input type="number" value='2.4' id="ai" class="input ai" >
             </div>
           </div>   
           <div class="form-group">
             <label for="rp" class="rp1">Repayment period</label>
-            <div class="input__container">
+            <div class="input__container" data-error="Standard repayment periods range from 10 to 40 years">
               <div class="currency-box" role="button">
                 <span class="currency-box__content years-box">YR</span>
               </div>
-              <input type="number" value='25' id="rp" class="input rp" data-error="Standard repayment periods range from 10 to 40 years">
+              <input type="number" value='25' id="rp" class="input rp" >
             </div>
           </div>  
         </div>

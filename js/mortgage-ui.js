@@ -4,14 +4,15 @@ const UI = (function() {
     depositAmount: '#dp',
     repaymentPeriod: '#rp',
     interestRate: '#ai',
-    totalInterestP: '.total-interest-payable'
+    totalInterestP: '.total-interest-payable',
+    inputs: Array.from(document.querySelectorAll('.input'))
   };
 
   const state = {
     currentPage: 1,
     rows: 12,
     btnAmount: 4,
-    currentYear: 0
+    currentYear: new Date().getFullYear(),
   }
   const values = {
     totalInterest: 0,
@@ -31,26 +32,26 @@ const UI = (function() {
     resetCurrentPage: () => {
       state.currentPage = 1;
     },
-    checkErrors: (pp, dpa, rp, ir) => {
-      if(parseFloat(pp) < parseFloat(dpa)) {
-        document.querySelector(UISelectors.propertyPrice).classList.add('.error')
-        document.querySelector(UISelectors.depositAmount).classList.add('.error')
-        return 
+    checkInputs: () => {
+      const floatedInputArr = [];
+      UISelectors.inputs.forEach(i => {
+        i.parentElement.classList.remove('input-error')
+        floatedInputArr.push(parseFloat(i.value))
+      });
+      // Error Checking
+      for(let i = 0; i < floatedInputArr.length - 1; i++) {
+        if(floatedInputArr[i] < 0) UI.inputError(UISelectors.inputs[i]);
       }
-      console.log(pp, dpa, rp, ir)
-      if(parseFloat(rp) > 40) {
-        document.querySelector(UISelectors.propertyPrice).classList
-        return
+      if(floatedInputArr[1] > floatedInputArr[0]) {
+        UI.inputError(UISelectors.inputs[1]);
+        UI.inputError(UISelectors.inputs[0]);
       }
-      if(parseFloat(ir) > 0.015) {
-        document.querySelector(UISelectors.interestRate).classList.add('.error') 
-        console.log(document.querySelector(UISelectors.interestRate))
-        return
-      }
-      document.querySelector(UISelectors.propertyPrice).classList.remove('.error')
-      document.querySelector(UISelectors.repaymentPeriod).classList.remove('.error')
-      document.querySelector(UISelectors.interestRate).classList.remove('.error')
-      document.querySelector(UISelectors.depositAmount).classList.remove('.error')
+      if(floatedInputArr[2] > 13) UI.inputError(UISelectors.inputs[2]);
+      if(floatedInputArr[3] > 40 || floatedInputArr[3] < 10) UI.inputError(UISelectors.inputs[3]);
+
+    },
+    inputError: (x) => {
+      x.parentElement.classList.add('input-error');
     },
     showBreakdown: (e) => {
       if(e.target.parentElement.nextElementSibling.classList.contains('hidden')) {
@@ -76,6 +77,17 @@ const UI = (function() {
     updatePercentageSVG: function(percent) {
       let successValue = (percent/200)*310;
       document.getElementById('success-value').setAttribute('stroke-dasharray', `${successValue}, 155`);
+    },
+    changePercentageText: (p) => {
+      const dpInfo = document.querySelector('.deposit-percentage-text')
+      if(p < 0.1) {
+        dpInfo.innerHTML = `Lenders may expect more than a 5% deposit at this time. It is worth consulting the lender about your financial situation`
+      } else {
+        dpInfo.innerHTML = `
+        By providing a high percentage deposit you a generally able to access better interest rates. It is worth consulting a financial advisor if you are unsure how much you will need.
+        `
+
+      }
     },
     activeButtons: (x) => {
       setTimeout(() => {
@@ -124,18 +136,24 @@ const UI = (function() {
       let m = dte.getMonth();
       let d = dte.getDate()
       d = `0${d}`
-      let y = dte.getUTCFullYear();
+      let y = state.currentYear + (state.currentPage - 1)
       let currentPage = state.currentPage
       let data = UI.tablePagination(currentPage, monthlyInterest, loanRemaining, interestPaid)
-
+      const tp = loanRemaining.length / 12;
+      console.log(tp)
+      
       document.querySelector('.repayment-results').innerHTML = `
       `;
 
       for(i = 0; i < data.trimmedInterestPaid.length; i ++) {
         m >= 12 ? m = 1 : m = m + 1;
-        m == 1 ? y = y + 1 : y = y
-        // currentPage > 1 && m === 1 ? y = y + currentPage : y = y + (currentPage - 1)
+        if(m === 1) {
+          y = y + 1
+        }
         
+        
+        console.log(state.currentYear)
+
         output += `
         <tr>
         <td>${m}/${y}</td>
