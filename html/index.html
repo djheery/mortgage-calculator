@@ -19,7 +19,7 @@
         </div>
         <div class="form-group">
           <label for="pp">Property price</label>
-          <div class="input__container">
+          <div class="input__container" data-error="">
             <div class="currency-box" role="button">
               <span class="currency-box__content">£</span>
             </div>
@@ -33,7 +33,7 @@
               <div class="currency-box" role="button">
                 <span class="currency-box__content">£</span>
               </div>
-              <input type="number" value='30000' id="dp" class="input dp">
+              <input type="number" value='30000' id="dp" class="input dp" data-error="Your deposit amount must be less than the stated property price">
             </div>
           </div>   
           <div class="form-group mrp-result">
@@ -56,7 +56,7 @@
               <div class="currency-box" role="button">
                 <span class="currency-box__content">%</span>
               </div>
-              <input type="number" value='2.4' id="ai" class="input ai">
+              <input type="number" value='2.4' id="ai" class="input ai" data-error="This is beyond a normal rate of interest">
             </div>
           </div>   
           <div class="form-group">
@@ -65,7 +65,7 @@
               <div class="currency-box" role="button">
                 <span class="currency-box__content years-box">YR</span>
               </div>
-              <input type="number" value='25' id="rp" class="input rp">
+              <input type="number" value='25' id="rp" class="input rp" data-error="Standard repayment periods range from 10 to 40 years">
             </div>
           </div>  
         </div>

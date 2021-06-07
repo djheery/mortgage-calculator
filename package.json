@@ -1,0 +1,19 @@
+{
+  "name": "mortgage-calculator-final",
+  "version": "1.0.0",
+  "description": "Mortgage Calculator - Bambridge Accountants",
+  "main": "mortgage-app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/djheery/mortgage-calculator.git"
+  },
+  "author": "Daniel Heery/ Curtis Ackroyd",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/djheery/mortgage-calculator/issues"
+  },
+  "homepage": "https://github.com/djheery/mortgage-calculator#readme"
+}

@@ -47,7 +47,6 @@ const MortgageCalculations =(function(){
           accumulatedInterestCount ++
           accumulatedInterest.push(accumulatedValue);
         }
-        console.log(accumulatedInterest);
         return(accumulatedInterest)
     }
   }

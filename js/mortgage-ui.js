@@ -11,6 +11,7 @@ const UI = (function() {
     currentPage: 1,
     rows: 12,
     btnAmount: 4,
+    currentYear: 0
   }
   const values = {
     totalInterest: 0,
@@ -29,6 +30,27 @@ const UI = (function() {
     },
     resetCurrentPage: () => {
       state.currentPage = 1;
+    },
+    checkErrors: (pp, dpa, rp, ir) => {
+      if(parseFloat(pp) < parseFloat(dpa)) {
+        document.querySelector(UISelectors.propertyPrice).classList.add('.error')
+        document.querySelector(UISelectors.depositAmount).classList.add('.error')
+        return 
+      }
+      console.log(pp, dpa, rp, ir)
+      if(parseFloat(rp) > 40) {
+        document.querySelector(UISelectors.propertyPrice).classList
+        return
+      }
+      if(parseFloat(ir) > 0.015) {
+        document.querySelector(UISelectors.interestRate).classList.add('.error') 
+        console.log(document.querySelector(UISelectors.interestRate))
+        return
+      }
+      document.querySelector(UISelectors.propertyPrice).classList.remove('.error')
+      document.querySelector(UISelectors.repaymentPeriod).classList.remove('.error')
+      document.querySelector(UISelectors.interestRate).classList.remove('.error')
+      document.querySelector(UISelectors.depositAmount).classList.remove('.error')
     },
     showBreakdown: (e) => {
       if(e.target.parentElement.nextElementSibling.classList.contains('hidden')) {
@@ -105,7 +127,6 @@ const UI = (function() {
       let y = dte.getUTCFullYear();
       let currentPage = state.currentPage
       let data = UI.tablePagination(currentPage, monthlyInterest, loanRemaining, interestPaid)
-      console.log(data)
 
       document.querySelector('.repayment-results').innerHTML = `
       `;
