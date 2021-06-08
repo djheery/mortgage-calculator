@@ -20,6 +20,8 @@ let myChart = new Chart(repayChart, {
     }]
   },
     options: {
+      responsive: true,
+      maintainAspectRatio: false,
       title: {
         display: true,
         position: 'start'
@@ -38,7 +40,7 @@ let myChart = new Chart(repayChart, {
           }],
         yAxes: [{
           ticks: {
-            beginAtZero:true
+            // callback: ,
           },
           scaleLabel: {
             display: true,
@@ -48,6 +50,8 @@ let myChart = new Chart(repayChart, {
     }
   });
 
+
+console.log(myChart.options.scales.yAxes.ticks)
 Chart.defaults.borderColor = '#e6e6e6'
 // chart.options.plugins.legend.position = 'top'
 

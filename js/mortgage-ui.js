@@ -140,7 +140,6 @@ const UI = (function() {
       let currentPage = state.currentPage
       let data = UI.tablePagination(currentPage, monthlyInterest, loanRemaining, interestPaid)
       const tp = loanRemaining.length / 12;
-      console.log(tp)
       
       document.querySelector('.repayment-results').innerHTML = `
       `;
@@ -150,9 +149,6 @@ const UI = (function() {
         if(m === 1) {
           y = y + 1
         }
-        
-        
-        console.log(state.currentYear)
 
         output += `
         <tr>
